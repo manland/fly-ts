@@ -1,0 +1,30 @@
+{
+  "name": "fly-ts",
+  "version": "0.1.0",
+  "description": "A fly plugin to compile typescript files",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manland/fly-ts.git"
+  },
+  "keywords": [
+    "fly",
+    "typescript"
+  ],
+  "author": {
+    "name": "Romain Maneschi",
+    "url": "http://romain.maneschi.fr"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/manland/fly-ts/issues"
+  },
+  "homepage": "https://github.com/manland/fly-ts#readme",
+  "peerDependencies": {
+    "typescript": ">1.5.0",
+    "fly": ">0.6.0"
+  }
+}
