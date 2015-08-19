@@ -30,6 +30,6 @@ function transpile(input, compilerOptions) {
 
 module.exports = function() {
     this.filter("ts", function(data, options) {
-        return transpile(data.toString(), options, options.fileName);
-    }, { ext: ".js" });
+        return {code: transpile(data.toString(), options), ext: ".js"};
+    });
 };
