@@ -1,18 +1,18 @@
 const ts = require("typescript");
 
 function transpile(input, compilerOptions) {
-    var options = compilerOptions;
+    var options = compilerOptions || {};
     options.isolatedModules = true;
     options.allowNonTsExtensions = true;
     options.noLib = true;
     options.noResolve = true;
 
-    var inputFileName = 'module.ts';
+    var inputFileName = options.filename ? options.filename : 'module.ts';
     var sourceFile = ts.createSourceFile(inputFileName, input, options.target);
     var outputText;
     var compilerHost = {
         getSourceFile: function (fileName, target) { return fileName === inputFileName ? sourceFile : undefined; },
-        writeFile: function (name, text, writeByteOrderMark) {
+        writeFile: function (name, text, writeByteOrderMark, onError) {
             outputText = text;
         },
         getDefaultLibFileName: function () { return "lib.d.ts"; },
@@ -22,14 +22,14 @@ function transpile(input, compilerOptions) {
         getNewLine: function () { return ts.getNewLineCharacter(options); }
     };
     var program = ts.createProgram([inputFileName], options, compilerHost);
-    // Emit
-    program.emit();
+    var res = program.emit();
     ts.Debug.assert(outputText !== undefined, "Output generation failed");
-    return outputText;
+    return {code: outputText, map: options.sourceMap ? res.sourceMaps : ''};
 }
 
 module.exports = function() {
     this.filter("ts", function(data, options) {
-        return {code: transpile(data.toString(), options), ext: ".js"};
+        const res = transpile(data.toString(), options);
+        return {code: res.code, map: res.map, ext: ".js"};
     });
 };
