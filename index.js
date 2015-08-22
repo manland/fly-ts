@@ -24,7 +24,7 @@ function transpile(input, compilerOptions) {
     var program = ts.createProgram([inputFileName], options, compilerHost);
     var res = program.emit();
     ts.Debug.assert(outputText !== undefined, "Output generation failed");
-    return {code: outputText, map: options.sourceMap ? res.sourceMaps : ''};
+    return {code: outputText, map: options.sourceMap && !options.inlineSourceMap ? res.sourceMaps : ''};
 }
 
 module.exports = function() {
