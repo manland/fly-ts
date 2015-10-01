@@ -19,7 +19,8 @@ function transpile(input, compilerOptions) {
         useCaseSensitiveFileNames: function () { return false; },
         getCanonicalFileName: function (fileName) { return fileName; },
         getCurrentDirectory: function () { return ''; },
-        getNewLine: function () { return ts.getNewLineCharacter(options); }
+        getNewLine: function () { return ts.getNewLineCharacter(options); },
+        fileExists: function() { return true; }
     };
     var program = ts.createProgram([inputFileName], options, compilerHost);
     var res = program.emit();

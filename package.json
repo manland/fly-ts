@@ -1,6 +1,6 @@
 {
   "name": "fly-ts",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "A fly plugin to compile typescript files",
   "main": "index.js",
   "scripts": {
@@ -24,7 +24,7 @@
   },
   "homepage": "https://github.com/manland/fly-ts#readme",
   "peerDependencies": {
-    "typescript": ">1.5.0",
+    "typescript": ">1.6.0",
     "fly": ">0.7.0"
   }
 }
