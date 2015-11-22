@@ -1,6 +1,6 @@
 {
   "name": "fly-ts",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "A fly plugin to compile typescript files",
   "main": "index.js",
   "scripts": {
